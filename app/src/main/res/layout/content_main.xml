@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/linearLayout">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logo"/>
+
+            <EditText
+                android:hint="Write your math expression"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:padding="7dp"/>
+
+        </LinearLayout>
+
+        <!--<TextView-->
+            <!--android:id="@+id/expr"-->
+            <!--android:text="Hello World!"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/answer"-->
+            <!--android:text="asd"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="bottom|center_horizontal"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:src="@drawable/share"
+            style="@style/menuItem"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:src="@drawable/donation"
+            style="@style/menuItem"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:src="@drawable/info"
+            style="@style/menuItem"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
