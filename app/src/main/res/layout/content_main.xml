@@ -33,6 +33,7 @@
                 android:src="@drawable/logo"/>
 
             <EditText
+                android:id="@+id/expressionInput"
                 android:hint="Write your math expression"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -55,35 +56,6 @@
             <!--android:text="asd"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"/>-->
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="bottom|center_horizontal"
-        android:layout_gravity="bottom|center_horizontal"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true">
-
-        <ImageView
-            android:adjustViewBounds="true"
-            android:src="@drawable/share"
-            style="@style/menuItem"
-            android:layout_height="wrap_content"/>
-
-        <ImageView
-            android:adjustViewBounds="true"
-            android:src="@drawable/donation"
-            style="@style/menuItem"
-            android:layout_height="wrap_content"/>
-
-        <ImageView
-            android:adjustViewBounds="true"
-            android:src="@drawable/info"
-            style="@style/menuItem"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

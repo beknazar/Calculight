@@ -26,13 +26,13 @@ public class CalculightMonitor extends Service {
             performClipboardCheck();
         }
     };
+    private Evaluator evaluator = new Evaluator();
 
     private static boolean stringContainsItemFromList(String inputString, String[] items)
     {
         for(int i =0; i < items.length; i++)
         {
-            if(inputString.contains(items[i]))
-            {
+            if(inputString.contains(items[i])) {
                 return true;
             }
         }
@@ -58,19 +58,26 @@ public class CalculightMonitor extends Service {
     private void performClipboardCheck() {
         ClipboardManager cb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         if (cb.hasPrimaryClip()) {
-            ClipData cd = cb.getPrimaryClip();
+
+//            ClipData cd = cb.getPrimaryClip();
             ClipData.Item item = cb.getPrimaryClip().getItemAt(0);
 
             // Gets the clipboard as text.
             String pasteData = item.getText().toString(); // getText() returns CharSequence
             Log.i("CALCULIGHT", "Rabotaet clipboard");
 
-            Evaluator evaluator = new Evaluator();
+            if (pasteData.matches("[0-9 .]+")) {
+                Log.i("CALCULIGHT", "Only number");
+                return;
+            }
+
             try {
                 String rezultat = evaluator.evaluate(pasteData);
                 if (rezultat.equals(pasteData)) {
+                    Log.i("CALCULIGHT", "rezultat.equals(pasteData)");
                     return;
                 }
+
                 String[] arr = {"==", "!=", "&&", "||", "<", ">", "<=", ">="};
                 String rezultatToShow = "0";
                 if (stringContainsItemFromList(pasteData, arr) && (rezultat.equals("1.0") || rezultat.equals("0.0"))) {
@@ -87,7 +94,7 @@ public class CalculightMonitor extends Service {
                 TextView text = (TextView) layout.findViewById(R.id.textToShow);
 
                 Typeface dinFont = Typeface.createFromAsset(getAssets(), "fonts/din.ttf");
-                text.setTypeface(dinFont);
+                text.setTypeface(dinFont); // setFont to beautiful font
 
                 // Set the Text to show in TextView
                 text.setText(Html.fromHtml("<font color='#ff1a75'>[</font>" + rezultatToShow + "<font color='#ff1a75'>]</font>"));
@@ -98,7 +105,7 @@ public class CalculightMonitor extends Service {
                 toast.setView(layout);
                 toast.show();
 
-                cb.setText(rezultat);
+                cb.setText(rezultatToShow);
 
 
             } catch (net.sourceforge.jeval.EvaluationException e) {
