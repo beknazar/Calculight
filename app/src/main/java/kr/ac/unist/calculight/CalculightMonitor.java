@@ -46,8 +46,14 @@ public class CalculightMonitor extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i("CALCULIGHT", "Received start id " + startId + ": " + intent);
-        return START_STICKY;
+        try {
+            if(intent != null){
+                Log.i("CALCULIGHT", "Received start id " + startId + ": " + intent);
+                return START_STICKY;
+            }
+        } catch (Throwable e) {
+        }
+        return START_REDELIVER_INTENT;
     }
 
     @Override
@@ -73,10 +79,16 @@ public class CalculightMonitor extends Service {
 
             try {
                 String rezultat = evaluator.evaluate(pasteData);
-                if (rezultat.equals(pasteData)) {
+                String rezultatINT = rezultat, pasteDataINT = pasteData;
+                int rK = rezultat.indexOf('.'), pK = pasteData.indexOf('.');
+                if (rK != -1) rezultatINT = rezultat.substring(0, rK);
+                if (pK != -1) pasteDataINT = pasteData.substring(0, pK);
+
+                if (rezultatINT.equals(pasteDataINT)) {
                     Log.i("CALCULIGHT", "rezultat.equals(pasteData)");
                     return;
                 }
+//                Log.i("CALCULIGHT", rezultat + " : " + pasteData);
 
                 String[] arr = {"==", "!=", "&&", "||", "<", ">", "<=", ">="};
                 String rezultatToShow = "0";
