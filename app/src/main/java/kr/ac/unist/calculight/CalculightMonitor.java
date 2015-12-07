@@ -121,7 +121,7 @@ public class CalculightMonitor extends Service {
 
 
             } catch (net.sourceforge.jeval.EvaluationException e) {
-                Toast.makeText(this, "Nu merge :( ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "No merge", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, e.getMessage());
             }
 
